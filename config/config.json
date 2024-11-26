@@ -1,0 +1,44 @@
+{
+  "flickr": {
+    "api_key": "221ab2fc4ce16d6e7348c32b37a018ca",
+    "api_secret": "92149a6540e09188 ",
+    "lat": "37.7749",
+    "lon": "-122.4194",
+    "radius": 10,
+    "geo_context": 2,
+    "extras": ["tags,date_taken"],
+    "sort": "date-taken-asc",
+    "default_min_taken_date": "2011-01-01 00:00:00",
+    "min_taken_date_file": "last_min_taken_date.txt"
+  },
+  "kafka": {
+    "bootstrap_servers": "localhost:9092",
+    "topic": "flickr-photos"
+  },
+  "bloom_filter": {
+    "initial_capacity": 10000,
+    "error_rate": 0.001,
+    "bloom_filter_file": "photo_bloom_filter.bf"
+  },
+  "limits": {
+    "max_api_calls": 3,
+    "api_call_interval": 5,
+    "retry_attempts": 3,
+    "retry_delay_seconds": 5
+  },
+  "logging": {
+    "log_file": "photo_ingestion.log",
+    "log_file_size_mb": 1,
+    "backup_count": 5
+  },
+  "output": {
+    "parquet_path": "./../output/parquet",
+    "checkpoint_location": "./../output/checkpoint",
+    "final_results_path" : "./../output/final_results"
+  },
+  "streaming": {
+    "watermark": "5 seconds",
+    "window_duration": "60 seconds",
+    "slide_interval": "5 seconds"
+  }
+}
